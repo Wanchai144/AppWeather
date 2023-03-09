@@ -5,10 +5,15 @@
 <img width="276" alt="Screen Shot 2566-03-09 at 22 59 05" src="https://user-images.githubusercontent.com/68962015/224081136-50e5d9ee-7c70-4a39-b64b-95b4b8837a00.png">
 
 **Communication between layers**
-1.UI calls method from ViewModel.
+
+1.UI calls method from ViewModel.     
+
 2.ViewModel executes Use case.
+
 3.Use case combines data from Album and Photo Repositories.
+
 4.Each Repository returns data from a Data Source (Cached or Remote).
+
 5.Information flows back to the UI where we display the list of posts.
 
 **Architecture**
