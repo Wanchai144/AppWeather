@@ -1,10 +1,8 @@
 # AppWeather
 
 
-![11](https://user-images.githubusercontent.com/68962015/148773136-d7fab1a4-bd25-469d-b430-efa06f426798.jpg)
-![12](https://user-images.githubusercontent.com/68962015/148773152-16101ff3-b5a2-40a4-84db-22f366f5dc74.jpg)
-
-
+<img width="273" alt="Screen Shot 2566-03-09 at 22 59 16" src="https://user-images.githubusercontent.com/68962015/224081117-d3460310-f35a-4de7-b401-30c0751d6f97.png">
+<img width="276" alt="Screen Shot 2566-03-09 at 22 59 05" src="https://user-images.githubusercontent.com/68962015/224081136-50e5d9ee-7c70-4a39-b64b-95b4b8837a00.png">
 
 **Architecture**
 
