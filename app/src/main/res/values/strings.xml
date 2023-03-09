@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MyTestApp</string>
+
+    <!-- Bottom Menu -->
+    <string name="bottom_menu_home">Home</string>
+    <string name="bottom_menu_detail">Detail</string>
+
+
+</resources>
