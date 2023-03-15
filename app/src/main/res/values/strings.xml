@@ -4,6 +4,7 @@
     <!-- Bottom Menu -->
     <string name="bottom_menu_home">Home</string>
     <string name="bottom_menu_detail">Detail</string>
+    <string name="bottom_menu_point">Point</string>
 
 
 </resources>

@@ -55,6 +55,11 @@ class BottomMenu @JvmOverloads constructor(
             onBottomMenuClickListener(BottomMenuHomePages.DETAIL)
         }
 
+        btnBottomMenuPoint.setOnClickListener {
+            setMenuActive(BottomMenuHomePages.POINT)
+            onBottomMenuClickListener(BottomMenuHomePages.POINT)
+        }
+
     }
 
     private fun setMenuActive(page: BottomMenuHomePages) {
@@ -63,10 +68,17 @@ class BottomMenu @JvmOverloads constructor(
             BottomMenuHomePages.HOME -> {
                 onDetailClick(false)
                 onHomeClick(true)
+                onPointClick(false)
             }
             BottomMenuHomePages.DETAIL -> {
                 onDetailClick(true)
                 onHomeClick(false)
+                onPointClick(false)
+            }
+            BottomMenuHomePages.POINT -> {
+                onDetailClick(false)
+                onHomeClick(false)
+                onPointClick(true)
             }
         }
     }
@@ -83,6 +95,11 @@ class BottomMenu @JvmOverloads constructor(
         btnBottomMenuDetail.isClickable = !isActive
     }
 
+    private fun onPointClick(isActive: Boolean) {
+        tvBottomMenuPoint.setTextColor(getColor(isActive))
+        btnBottomMenuPoint.isClickable = !isActive
+    }
+
     private fun onHomeClick(isActive: Boolean) {
         ivBottomMenuHome.setColorFilter(getColor(isActive))
         tvBottomMenuHome.setTextColor(getColor(isActive))
@@ -94,7 +111,7 @@ class BottomMenu @JvmOverloads constructor(
     }
 
     enum class BottomMenuHomePages {
-        HOME, DETAIL
+        HOME, DETAIL, POINT
     }
 
     interface BottomMenuListener {

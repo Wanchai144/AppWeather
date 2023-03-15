@@ -1,28 +1,32 @@
 package com.example.mytestapp.presentation.feature.detail
 
-import com.example.mytestapp.data.model.AllDayWeather
-import com.example.mytestapp.domain.usecase.LoadAllDayWeatherUseCase
+
+import com.example.mytestapp.data.model.Coin
+import com.example.mytestapp.data.model.SectionModel
+import com.example.mytestapp.domain.usecase.GetDataUseCase
+import com.example.mytestapp.domain.usecase.LoadDataRetrospectUseCase
 import com.example.mytestapp.presentation.common.SingleLiveEvent
 import com.example.mytestapp.presentation.extension.toNetworkException
 import com.example.mytestapp.presentation.feature.base.*
 import kotlinx.coroutines.flow.catch
 
-class DetailViewModel (private val loadAllDayWeatherUseCase: LoadAllDayWeatherUseCase) : BaseViewModel<Any, ViewEffect>() {
-    private val _showAllDayWeatherSuccess = SingleLiveEvent<ViewState<AllDayWeather>>()
-    val showAllDayWeatherSuccess: SingleLiveEvent<ViewState<AllDayWeather>>
-        get() = _showAllDayWeatherSuccess
+class DetailViewModel (private  val case: LoadDataRetrospectUseCase) : BaseViewModel<Any, ViewEffect>() {
+    private val _showRetrospectSuccess = SingleLiveEvent<ViewState<List<Coin>>>()
+    val showRetrospectSuccess: SingleLiveEvent<ViewState<List<Coin>>>
+        get() = _showRetrospectSuccess
 
-    fun loadAllDayWeather(lat:Double,long: Double) = executeUseCase(
+
+    fun loadDataRetrospect() = executeUseCase(
         action = {
-            loadAllDayWeatherUseCase.execute(lat = lat, long = long)
+            case.execute()
                 .catch { exception ->
                     val networkException = exception.toNetworkException()
-                    _showAllDayWeatherSuccess.value = Error(networkException)
+                    _showRetrospectSuccess.value = Error(networkException)
                 }.collect {
-                    _showAllDayWeatherSuccess.value = Success(it)
+                    _showRetrospectSuccess.value = Success(it)
                 }
         }, noInternetAction = {
-            _showAllDayWeatherSuccess.value = NoInternetState()
+            _showRetrospectSuccess.value = NoInternetState()
         })
 
 }

@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.mytestapp.presentation.feature.detail.DetailFragment
 import com.example.mytestapp.presentation.feature.home.HomeFragment
 import com.example.mytestapp.presentation.feature.main.winget.BottomMenu
+import com.example.mytestapp.presentation.feature.point.ScorePointFragment
 
 
 class HomeMainViewPagerAdapter(
@@ -14,14 +15,13 @@ class HomeMainViewPagerAdapter(
     private val lifecycle: Lifecycle,
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    override fun getItemCount() = 2
+    override fun getItemCount() = 3
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            BottomMenu.BottomMenuHomePages.HOME.ordinal -> {
-                HomeFragment()
-            }
+            BottomMenu.BottomMenuHomePages.HOME.ordinal -> HomeFragment()
             BottomMenu.BottomMenuHomePages.DETAIL.ordinal -> DetailFragment()
+            BottomMenu.BottomMenuHomePages.POINT.ordinal -> ScorePointFragment()
             else -> throw ExceptionInInitializerError()
         }
     }

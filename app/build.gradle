@@ -4,6 +4,7 @@ plugins {
     id 'androidx.navigation.safeargs'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
+    id 'realm-android'
 }
 
 android {
@@ -38,8 +39,8 @@ android {
         flavorDimensions("dev")
         dev {
             applicationIdSuffix ".dev"
-            buildConfigField 'String', "BASE_API_URL", "\"http://api.openweathermap.org/data/2.5/\""
-            buildConfigField 'String', "API_KEY_ID", "\"13ea8fd142179be9029b437422e03a32\""
+            buildConfigField 'String', "BASE_API_URL", "\"https://api.coindesk.com/v1/bpi/\""
+            buildConfigField("String", "PREFERENCES_NAME", "\"mytestapp_dev\"")
         }
     }
 
@@ -99,6 +100,12 @@ dependencies {
     debugImplementation "com.github.ChuckerTeam.Chucker:library:3.5.2"
     releaseImplementation "com.github.ChuckerTeam.Chucker:library-no-op:3.5.0"
 
+    //room
+    def room_version = "2.5.0-beta02"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation "androidx.room:room-guava:$room_version"
 
     // Coroutine Testing
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2'
