@@ -1,0 +1,30 @@
+<!-- item_header.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/textHeaderEmployeeId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="ลำดับ"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/textHeaderText1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="รหัสพนักงาน"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/textHeaderText2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="ข้อความที่กรอก"
+        android:textStyle="bold"/>
+
+</LinearLayout>

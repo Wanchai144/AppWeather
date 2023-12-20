@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
     id 'kotlin-kapt'
+    id 'realm-android'
     id 'kotlin-android-extensions'
 }
 
@@ -38,8 +39,6 @@ android {
         flavorDimensions("dev")
         dev {
             applicationIdSuffix ".dev"
-            buildConfigField 'String', "BASE_API_URL", "\"http://api.openweathermap.org/data/2.5/\""
-            buildConfigField 'String', "API_KEY_ID", "\"13ea8fd142179be9029b437422e03a32\""
         }
     }
 

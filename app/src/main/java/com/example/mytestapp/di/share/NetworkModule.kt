@@ -2,7 +2,6 @@ package com.example.mytestapp.di.share
 
 
 import com.example.mytestapp.BuildConfig
-import com.example.mytestapp.data.source.remote.api.service.APIService
 import com.example.mytestapp.presentation.common.CoroutineContextProvider
 import com.example.mytestapp.utils.Connectivity
 import com.example.mytestapp.utils.ConnectivityImpl
@@ -34,8 +33,5 @@ val networkModule = module {
             setLevel(HttpLoggingInterceptor.Level.BODY)
         }
     }
-
-    //Api interface
-    single<APIService> { get<RetrofitBuilder>().build(BuildConfig.BASE_API_URL) }
 
 }
