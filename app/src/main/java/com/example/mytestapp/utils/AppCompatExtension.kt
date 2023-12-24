@@ -2,6 +2,7 @@ package com.example.mytestapp.utils
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.rejowan.cutetoast.CuteToast
 
 fun AppCompatActivity.replaceFragment(
     containerId: Int,
@@ -33,4 +34,13 @@ fun AppCompatActivity.replaceChildFragment(
 
     transaction.replace(containerId, fragment, tag)
     transaction.commit()
+}
+
+
+fun AppCompatActivity.showSuccessToast(message: String) {
+    CuteToast.ct(this, message, CuteToast.LENGTH_SHORT, CuteToast.SUCCESS, true).show()
+}
+
+fun AppCompatActivity.showErrorToast(message: String, icon :Boolean = true) {
+    CuteToast.ct(this, message, CuteToast.LENGTH_SHORT, CuteToast.ERROR, icon).show()
 }

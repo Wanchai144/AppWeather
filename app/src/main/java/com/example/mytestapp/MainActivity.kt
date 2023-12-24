@@ -12,6 +12,11 @@ import kotlin.system.exitProcess
 
 class MainActivity: AppCompatActivity(){
     val TAG = "MainActivity"
+
+    val receivedData : String?
+        get() =  intent.getStringExtra("key")
+
+
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

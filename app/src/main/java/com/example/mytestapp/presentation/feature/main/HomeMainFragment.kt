@@ -1,26 +1,27 @@
 package com.example.mytestapp.presentation.feature.main
 
-import HomeMainViewModel
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.mytestapp.MainActivity
+import com.example.mytestapp.R
+import com.example.mytestapp.data.model.UserLogin
 import com.example.mytestapp.databinding.FragmentHomeMainBinding
-import com.example.mytestapp.presentation.feature.adapter.AdapterAttentWork
-import com.example.mytestapp.presentation.feature.main.winget.AlertDialog
-import kotlinx.android.synthetic.main.fragment_home_main.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.example.mytestapp.presentation.feature.map.MapFragment
+import com.example.mytestapp.shared_preferences.SharedPrefHelper
+import com.example.mytestapp.utils.replaceFragment
+import com.example.mytestapp.utils.showSuccessToast
+import org.koin.android.ext.android.inject
 
 
 class HomeMainFragment : Fragment() {
     private val binding by lazy { FragmentHomeMainBinding.inflate(layoutInflater) }
-    private val viewModel: HomeMainViewModel by viewModel()
-    private val adapter: AdapterAttentWork by lazy {
-        AdapterAttentWork()
+    private val sharedPrefHelper: SharedPrefHelper by inject()
+
+    private val activity by lazy {
+        (requireActivity() as MainActivity)
     }
 
     override fun onCreateView(
@@ -34,44 +35,40 @@ class HomeMainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        setAdapter()
-        observeViewModel()
+        checkAutoLogin()
+        receivedData()
+    }
+
+    private fun receivedData() = with(binding) {
+        if (!activity.receivedData.isNullOrEmpty())  edtEmail.setText(activity.receivedData)
+    }
+
+    private fun checkAutoLogin() {
+        val userPref = sharedPrefHelper.get(SharedPrefHelper.SharPrefKeys.USER_LOGIN, UserLogin())
+        if (!userPref.email.isNullOrEmpty() && !userPref.password.isNullOrEmpty()) goViewMap()
     }
 
     private fun initView() = with(binding) {
-        button.setOnClickListener {
-            val employeeId = editText.text.toString().trim()
-            if (employeeId.isNotEmpty()) {
-                val isDuplicate = viewModel.isEmployeeIdDuplicateInRealm(employeeId)
-                if (isDuplicate) {
-                    messageError.visibility = View.VISIBLE
-                } else {
-                    viewModel.showDialog(childFragmentManager, editText = employeeId)
-                    messageError.visibility = View.INVISIBLE
+        btnLogin.setOnClickListener {
+            val email = edtEmail.text.toString().trim()
+            val password = edtPassWord.text.toString().trim()
+            if (email.isNotEmpty() && password.isNotEmpty() && email.contains("DTCGPS") && password.contains("test")) {
+                if (switch1.isChecked){
+                    val userLoginModel = UserLogin(email = email, password = password)
+                    sharedPrefHelper.put(SharedPrefHelper.SharPrefKeys.USER_LOGIN, userLoginModel)
+                    goViewMap()
+                }else{
+                    goViewMap()
                 }
-            } else {
+            }else{
+                activity.showSuccessToast(getString(R.string.error_input_text))
             }
         }
     }
 
-    private fun observeViewModel() = with(viewModel) {
-        showList.observe(viewLifecycleOwner) {
-            adapter.loadData(it)
-        }
-
-        onSuccess.observe(viewLifecycleOwner) {
-            getUser()
-        }
-
+    private fun goViewMap() {
+        activity.replaceFragment(R.id.container, MapFragment())
     }
-
-    private fun setAdapter() = with(binding) {
-        recyclerView.layoutManager =
-            LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
-        recyclerView.adapter = adapter
-        recyclerView.setHasFixedSize(true)
-    }
-
 
     override fun onResume() {
         super.onResume()

@@ -7,18 +7,20 @@ import com.example.mytestapp.data.model.UserEntity
 import com.example.mytestapp.databinding.ItemRowBinding
 
 
-class AdapterAttentWork () :
+class AdapterUser () :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         const val VIEWTYPE_ROW = 1
     }
 
-    var data: List<UserEntity> = listOf()
+    var onSelectItem: ((String) -> Unit)? = null
+
+    var data: List<String> = listOf()
 
 
-    fun loadData(content:List<UserEntity>) {
-        this.data = content
+    fun loadData(content:List<String>) {
+        this.data = content.sorted()
         notifyDataSetChanged()
     }
 
@@ -50,10 +52,11 @@ class AdapterAttentWork () :
 
     inner class ViewHolder(private val binding: ItemRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data:UserEntity) = with(binding) {
-            Id.text = data.id.toString()
-            textEmployeeId.text = data.employeeID
-            textField2.text = data.message
+        fun bind(name:String) = with(binding) {
+            tvName.text = name
+            itemView.setOnClickListener {
+                onSelectItem?.invoke(name)
+            }
         }
     }
 }

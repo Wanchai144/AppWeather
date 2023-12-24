@@ -1,12 +1,11 @@
 package com.example.mytestapp.data.repository
 
 import com.example.mytestapp.data.model.UserEntity
-import com.google.gson.Gson
 import io.realm.Realm
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-interface AttendWorkRepository {
+interface AnimalRepository {
     fun getUser(): Flow<List<UserEntity>>
     fun saveData(userEntity: List<UserEntity>): Flow<Unit>
 
@@ -14,7 +13,7 @@ interface AttendWorkRepository {
 
 class AttendWorkRepositoryImpl(
     private val realm: Realm,
-) : AttendWorkRepository {
+) : AnimalRepository {
 
     override fun getUser(): Flow<List<UserEntity>> = flow {
         runCatching {
@@ -25,6 +24,7 @@ class AttendWorkRepositoryImpl(
             throw exception
         }
     }
+
     override fun saveData(userEntity: List<UserEntity>): Flow<Unit> = flow {
         runCatching {
             realm.beginTransaction()

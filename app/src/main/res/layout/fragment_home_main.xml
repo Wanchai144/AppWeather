@@ -4,138 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cool_grey"
     tools:context=".presentation.feature.main.HomeMainFragment">
 
-    <LinearLayout
-        android:id="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="50dp"
+        android:src="@color/cool_red"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:padding="20dp"
-        android:background="@color/cool_dark_blue"
-        android:layout_height="wrap_content">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:text="@string/attend_work"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-   <androidx.constraintlayout.widget.ConstraintLayout
-       android:layout_width="0dp"
-       app:layout_constraintTop_toBottomOf="@+id/toolbar"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintBottom_toBottomOf="parent"
-       android:layout_marginHorizontal="8dp"
-       android:layout_height="0dp">
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="ชื่อผู้ใช้"
+        android:padding="@dimen/dimen_8_dp"
+        android:paddingHorizontal="8dp"
+        android:textSize="14sp"
+        android:textColorHint="@color/cool_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-       <TextView
-           app:layout_constraintTop_toTopOf="parent"
-           android:layout_marginTop="46dp"
-           android:id="@+id/textView"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="รหัสพนักงาน"
-           android:textColor="@color/black"
-           android:textSize="18sp"
-           app:layout_constraintStart_toStartOf="parent"
-            />
+    <EditText
+        android:id="@+id/edtPassWord"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="รหัสผ่าน"
+        android:textSize="14sp"
+        android:padding="@dimen/dimen_8_dp"
+        android:paddingHorizontal="8dp"
+        android:textColorHint="@color/cool_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
-       <EditText
-           android:id="@+id/editText"
-           android:layout_width="0dp"
-           android:layout_height="wrap_content"
-           android:background="@drawable/bg_edittext"
-           android:padding="@dimen/dimen_8_dp"
-           android:paddingHorizontal="8dp"
-           android:layout_marginHorizontal="8dp"
-           app:layout_constraintBottom_toBottomOf="@+id/textView"
-           app:layout_constraintEnd_toStartOf="@+id/button"
-           app:layout_constraintStart_toEndOf="@+id/textView"
-           app:layout_constraintTop_toTopOf="@+id/textView" />
 
-       <com.google.android.material.button.MaterialButton
-           android:layout_width="wrap_content"
-           android:id="@+id/button"
-           android:text="เข้างาน"
-           android:textStyle="bold"
-           app:layout_constraintStart_toEndOf="@+id/editText"
-           android:layout_height="wrap_content"
-           app:cornerRadius="@dimen/dimen_16_dp"
-           app:backgroundTint="@color/cool_dark_blue"
-           app:layout_constraintBottom_toBottomOf="@+id/editText"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintTop_toTopOf="@+id/editText" />
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/edtPassWord"
+        app:layout_constraintTop_toBottomOf="@+id/edtPassWord"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-       <TextView
-           android:id="@+id/messageError"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:gravity="center"
-           android:visibility="gone"
-           android:text="รหัสพนักงานนี้ถูกใช้งานเเล้ว"
-           android:textColor="@color/cool_red"
-           app:layout_constraintBottom_toTopOf="@+id/itemHeader"
-           app:layout_constraintTop_toBottomOf="@+id/editText" />
-       <!-- item_header.xml -->
-       <LinearLayout
-           android:id="@+id/itemHeader"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           android:padding="16dp"
-           android:layout_marginTop="40dp"
-           android:background="@color/cool_dark_blue"
-           app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/editText">
+    <TextView
+        android:layout_width="0dp"
+        android:text="เข้าสุ่ระบบอัตโนมัติ"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/switch1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/switch1"
+        app:layout_constraintTop_toTopOf="@+id/switch1" />
 
-           <TextView
-               android:id="@+id/textHeaderEmployeeId"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:text="ลำดับ"
-               android:textColor="@color/white"
-               android:textStyle="bold" />
-
-           <TextView
-               android:id="@+id/textHeaderText1"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:textColor="@color/white"
-               android:text="รหัสพนักงาน"
-               android:textStyle="bold" />
-
-           <TextView
-               android:id="@+id/textHeaderText2"
-               android:layout_width="0dp"
-               android:textColor="@color/white"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:text="ข้อความที่กรอก"
-               android:textStyle="bold" />
-
-       </LinearLayout>
-
-       <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/recyclerView"
-           android:layout_width="0dp"
-           android:layout_height="0dp"
-           app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/itemHeader" />
-
-   </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="เข้าสู่ระบบ"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        app:backgroundTint="@color/cool_dark_green"
+        app:cornerRadius="@dimen/dimen_16_dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/edtPassWord"
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

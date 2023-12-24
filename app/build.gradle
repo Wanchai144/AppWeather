@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-kapt'
     id 'realm-android'
     id 'kotlin-android-extensions'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -98,6 +99,22 @@ dependencies {
     debugImplementation "com.github.ChuckerTeam.Chucker:library:3.5.2"
     releaseImplementation "com.github.ChuckerTeam.Chucker:library-no-op:3.5.0"
 
+    // cute toast
+    implementation 'com.github.ahmmedrejowan.CuteToast:CuteToast:1.2'
+
+    // Dexter Permission Management
+    implementation 'com.karumi:dexter:6.2.3'
+
+    // statusBar
+    implementation('com.github.niorgai:StatusBarCompat:2.3.3', {
+        exclude group: 'androidx.appcompat:appcompat'
+        exclude group: 'com.google.android.material:material'
+    })
+
+    // google
+    implementation "com.google.android.gms:play-services-auth:20.4.1"
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
 
     // Coroutine Testing
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2'

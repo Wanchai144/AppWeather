@@ -5,6 +5,8 @@
     <string name="bottom_menu_home">Home</string>
     <string name="bottom_menu_detail">Detail</string>
     <string name="attend_work">การเข้างาน</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="error_input_text">เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง</string>
 
 
 </resources>
